@@ -1,0 +1,16 @@
+GET https://fr.openfoodfacts.org/categories.json
+	Donne toutes les catégories d'aliments présentes dans la base de données.
+	
+GET https://fr.openfoodfacts.org/origines.json
+	Donne la liste des origines, variées...
+
+> purchase_places: country, state and/or city where the product can be purchased. For example: Paris, France.
+GET https://fr-en.openfoodfacts.org/purchase-places.json
+
+> stores: distributor name. Example: Tesco, Walmart, Carrefour.
+GET https://fr-en.openfoodfacts.org/city/strasbourg-bas-rhin-france/stores.json  : Donne la liste des magasins répertoriés à Strasbourg.
+
+GET https://fr-en.openfoodfacts.org/country/en:france/cities.json
+	Donne la liste des villes répertoriées en France.
+
+

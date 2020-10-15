@@ -13,4 +13,23 @@ GET https://fr-en.openfoodfacts.org/city/strasbourg-bas-rhin-france/stores.json 
 GET https://fr-en.openfoodfacts.org/country/en:france/cities.json
 	Donne la liste des villes répertoriées en France.
 
+GET https://fr-en.openfoodfacts.org/state/complete.json 
+	Donne la liste des produits dont l'état est complet (toutes les infos).
+	
+GET https://fr-en.openfoodfacts.org/popularity/top-10000-fr-scans-2019&category=beverages&state=complete.json
+	NE FONCTIONNE PAS
+	
+GET https://fr-en.openfoodfacts.org/popularity/top-country-fr-scans-2020&nutriscore_grade='a'.json
+	NE FONCTIONNE PAS
+
+
+	
+	
+
+
+curl -o off.htm https://fr-en.openfoodfacts.org/state/complete.json
+	A utiliser dans le terminal en bash pour télécharger dans un fichier du nom souhaité (ici off.htm) les données JSON demandées via l'URI.
+
+python3 -m json.tool fichierjson (ex: response.json) 
+	Permet d'afficher en format JSON dans le terminal
 

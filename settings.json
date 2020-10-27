@@ -1,8 +1,11 @@
 {
     "categories": [
         "saucisson sec",
-        ""
+        "biscuit chocolat",
+        "jus orange",
+        "yaourt fruits",
+        "glace vanille"
     ],
     "page":1,
-    "page_size":300,
+    "page_size":85
 }

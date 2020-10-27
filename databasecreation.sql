@@ -18,7 +18,7 @@ CREATE TABLE Favorite (
     id_product_replaced SMALLINT NOT NULL,
     id_product_replacing SMALLINT NOT NULL,
     date_creation_favorite DATETIME NOT NULL,
-    PRIMARY KEY (request_number)
+    PRIMARY KEY (id)
 )
 ENGINE=INNODB;
 

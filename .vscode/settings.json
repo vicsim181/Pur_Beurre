@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "d:\\Github\\P5\\Env\\Scripts\\python.exe",
+    "python.pythonPath": "Env\\Scripts\\python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true
 }

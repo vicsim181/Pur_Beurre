@@ -1,15 +1,13 @@
 # P5
 Projet 5 OPCR
 
-La base de données comprend 5000 produits des 10 catégories les plus fournies de la base de données Open Food Facts:
-- Plant-based foods 77365
-- Snacks 49721
-- Sweet snacks 41842
-- Beverages 40959
-- Meats 32775
-- Dairies 32257
-- Fruits and vegetables based foods 28031
-- Meals 27699
-- Cereals and potatoes 25680
-- Fermented foods 24275
+This application has the objective to help consumers choosing healthier products.
+Each user can consult of 85 products in 5 different categories:
+-
+ - saucisson sec
+ - jus d'orange
+ - yaourt aux fruits
+ - glace vanille
+
+Those products are based on what is available in the french market and stores.
 

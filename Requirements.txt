@@ -1,0 +1,6 @@
+Python 3.8.6
+requests 2.24.0
+MySQL-connector-python 8.0.22
+MySQL-connector-net 8.0.22
+MySQL Server 8.0.22
+pip 20.2.4

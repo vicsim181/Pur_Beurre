@@ -1,0 +1,1 @@
+INSERT INTO Product VALUES(NULL, 'saucisson', '200g', 1, 'd', 'viande de porc, graisse', 'https://www.lequipe.fr');

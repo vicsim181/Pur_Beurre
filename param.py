@@ -1,1 +1,1 @@
-parameters = {"host":"localhost", "user":"opcr5", "password":"japon+72@#cclmvdf", "database":"essai"}
+parameters = {"host":"localhost", "user":"root", "password":"japon+71@#cclmvdf", "database":"essai"}

@@ -26,9 +26,9 @@ for category in categories:
     raw_products = json['products']
     for raw_product in raw_products:
         cursor.execute("INSERT INTO Product (name_product, quantity, id_category,\
-            nutri_score, ingredients, link_url, stores) VALUES(%s,%s,%s,%s,%s,%s,%s);",
+            nutri_score, ingredients, link_url) VALUES(%s,%s,%s,%s,%s,%s,%s);",
             (raw_product['product_name'], raw_product['quantity'], category[0], raw_product['nutriscore_grade'],
-            raw_product['ingredients_text_fr'], raw_product['url'], raw_product['stores']))
+            raw_product['ingredients_text_fr'], raw_product['url']))
         if raw_product['stores_tags']:
             for store in raw_product['stores_tags']:
                 cursor.execute("INSERT INTO store (name) VALUES (%s);", (store,))

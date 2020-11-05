@@ -2,8 +2,7 @@
 import json
 from ormcreation import Category
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-from base import Base, eng
+
 
 def main():
     ses = Session()
@@ -15,6 +14,7 @@ def main():
         cat = Category(name=category)
         ses.add(cat)
     ses.commit()
+
 
 if __name__ == "__main__":
     main()

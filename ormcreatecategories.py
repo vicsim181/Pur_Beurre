@@ -1,10 +1,12 @@
 """Script feeding the Category table, using the SQLAlchemy ORM."""
 import json
-from ormcreation import Category
+from models.category import Category
+from models.base import eng
 from sqlalchemy.orm import sessionmaker
 
 
 def main():
+    Session = sessionmaker(bind=eng)
     ses = Session()
 
     with open('./Scripts/settings.json', 'r') as settings:

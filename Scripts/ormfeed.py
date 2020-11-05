@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """Script feeding the tables, using the SQLAlchemy ORM."""
 import json, requests
 from ormcreation import Category, Product, Store, Junction
@@ -5,14 +7,15 @@ import mysql.connector
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-eng = create_engine('mysql://opcr5:japon+72@#cclmvdf@localhost/essai', echo=True)
+eng = create_engine('mysql://root:japon+71@#cclmvdf@localhost/essai', echo=True)
 Session = sessionmaker(bind=eng)
 ses = Session()
 
-with open('./Scripts/settings.json', 'r') as settings:
+with open('./Scripts/settings.json', 'r', encoding="utf-8") as settings:
     data = json.load(settings)
 
 categories = ses.query(Category)
+j = 1
 i = 1
 junction = []
 for category in categories:
@@ -28,7 +31,8 @@ for category in categories:
             for store in raw_product['stores_tags']:
                 pr = ses.query(Product).filter(Product.name==raw_product['product_name']).first()
                 # id_pr = pr.Id
-                jnct_st_pr = Junction(id_product=pr.Id, name_store=store, id_store=0)
+                jnct_st_pr = Junction(id_product=pr.Id, name_store=store, id_store=j)
+                j += 1
                 ses.add(jnct_st_pr)
         i += 1
 ses.commit()

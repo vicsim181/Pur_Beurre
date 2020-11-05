@@ -9,5 +9,3 @@ class Category(Base):
 
     Id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(50), nullable=False)
-
-    product = relationship("Product")

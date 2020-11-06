@@ -14,5 +14,6 @@ class Product(Base):
     nutri_score = Column(String(1), nullable=False)
     ingredients = Column(String(10000), nullable=False)
     link_url = Column(String(250), nullable=False)
+    stores = Column(String(150))
 
     category = relationship("Category", backref="Product")

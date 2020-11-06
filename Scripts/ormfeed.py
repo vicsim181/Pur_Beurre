@@ -33,13 +33,16 @@ for category in categories:
     raw_products = json['products']
     for raw_product in raw_products:
         product = Product(name=raw_product['product_name'], quantity=raw_product['quantity'], id_category=category.Id,
-        nutri_score=raw_product['nutriscore_grade'], ingredients=raw_product['ingredients_text_fr'], link_url=raw_product['url'])
+        nutri_score=raw_product['nutriscore_grade'], ingredients=raw_product['ingredients_text_fr'], link_url=raw_product['url'], stores=str(raw_product['stores_tags']))
         ses.add(product)
         if raw_product['stores_tags']:
             for store in raw_product['stores_tags']:
+                store_add = Store(name=store)
+                ses.add(store_add)
                 pr_name = raw_product['product_name']
                 pr = ses.query(Product).filter(Product.name == f'{pr_name}').first()
-                jnct_st_pr = StoreProduct(id_product=pr.Id, name_store=store, id_store=j)
+                print(j)
+                jnct_st_pr = StoreProduct(id_product=pr.Id, name_product=f'{pr_name}', name_store=store, id_store=j)
                 j += 1
                 ses.add(jnct_st_pr)
         i += 1

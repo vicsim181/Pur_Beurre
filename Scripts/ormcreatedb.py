@@ -1,4 +1,6 @@
-
+"""File creating the tables in the database."""
+import sys
+sys.path.append('D:/Github/P5/github')
 from models.base import Base, eng
 from models.category import Category
 from models.product import Product

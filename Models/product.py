@@ -12,7 +12,7 @@ class Product(Base):
     quantity = Column(String(40), nullable=False)
     id_category = Column(Integer, ForeignKey("Category.Id"), nullable=False)
     nutri_score = Column(String(1), nullable=False)
-    ingredients = Column(String(1000), nullable=False)
-    link_url = Column(String(100), nullable=False)
+    ingredients = Column(String(10000), nullable=False)
+    link_url = Column(String(250), nullable=False)
 
     category = relationship("Category", backref="Product")

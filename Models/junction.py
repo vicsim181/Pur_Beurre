@@ -1,6 +1,5 @@
 """Script creating the tables, using the SQLAlchemy ORM."""
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer
 from models.base import Base
 
 

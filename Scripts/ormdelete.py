@@ -10,7 +10,7 @@ from models.base import eng
 
 
 def main():
-    for Table in (Favorite, Store, StoreProduct, Product, Category):
+    for Table in (StoreProduct, Favorite, Store, Product, Category):
         Table.__table__.drop(eng)
 
 

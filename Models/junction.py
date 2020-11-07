@@ -11,7 +11,7 @@ class StoreProduct(Base):
                         nullable=False)
     name_product = Column(String(100))
     name_store = Column(String(100))
-    id_store = Column(Integer, primary_key=True)
+    id_store = Column(Integer, ForeignKey("Store.Id"), primary_key=True)
 
     product = relationship("Product")
-    # store = relationship("Store")
+    store = relationship("Store")

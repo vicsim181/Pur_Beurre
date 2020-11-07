@@ -21,8 +21,6 @@ ses = Session()
 with open('../models/settings.json', 'r') as settings:
     data = json.load(settings)
 
-
-j = 1
 i = 1
 junction = []
 
@@ -39,14 +37,15 @@ for category in categories:
             for store in raw_product['stores_tags']:
                 store_add = Store(name=store)
                 ses.add(store_add)
-                pr_name = raw_product['product_name']
-                pr = ses.query(Product).filter(Product.name == f'{pr_name}').first()
-                print(j)
-                jnct_st_pr = StoreProduct(id_product=pr.Id, name_product=f'{pr_name}', name_store=store, id_store=j)
-                j += 1
-                ses.add(jnct_st_pr)
         i += 1
 ses.commit()
 
 # pr = ses.query(Product).filter(Product.name==raw_product['product_name'])
 #                 id_pr = pr.Id
+
+# pr_name = raw_product['product_name']
+#                 pr = ses.query(Product).filter(Product.name == f'{pr_name}').first()
+#                 stor = ses.query(Store).filter(Store.name == f'{store}').first()
+#                 jnct_st_pr = StoreProduct(id_product=pr.Id, name_product=(f'{pr_name}'), name_store=store, id_store=stor.Id)
+#                 j += 2
+#                 ses.add(jnct_st_pr)

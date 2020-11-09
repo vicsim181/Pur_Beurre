@@ -7,11 +7,11 @@ import sys
 from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
 sys.path.append("D:/Github/P5/github")
-from models.product import Product
-from models.category import Category
-from models.junction import StoreProduct
-from models.base import eng
-from models.store import Store
+from Models.product import Product
+from Models.category import Category
+from Models.junction import StoreProduct
+from Models.base import eng
+from Models.store import Store
 
 
 def main():

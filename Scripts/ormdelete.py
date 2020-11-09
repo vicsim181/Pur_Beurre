@@ -1,12 +1,12 @@
 """File deleting the tables from the database."""
 import sys
 sys.path.append('D:/Github/P5/github')
-from models.category import Category
-from models.product import Product
-from models.store import Store
-from models.favorite import Favorite
-from models.junction import StoreProduct
-from models.base import eng
+from Models.category import Category
+from Models.product import Product
+from Models.store import Store
+from Models.favorite import Favorite
+from Models.junction import StoreProduct
+from Models.base import eng
 
 
 def main():

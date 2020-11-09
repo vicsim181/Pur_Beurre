@@ -2,8 +2,8 @@
 import json
 import sys
 sys.path.append('D:/Github/P5/github')
-from models.category import Category
-from models.base import eng
+from Models.category import Category
+from Models.base import eng
 from sqlalchemy.orm import sessionmaker
 
 

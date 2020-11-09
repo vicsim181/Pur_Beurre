@@ -1,6 +1,6 @@
 """Script creating the tables, using the SQLAlchemy ORM."""
 from sqlalchemy import Column, Integer, String
-from models.base import Base
+from Models.base import Base
 
 
 class Category(Base):

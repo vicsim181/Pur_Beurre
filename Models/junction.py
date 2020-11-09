@@ -1,6 +1,6 @@
 """Script creating the tables, using the SQLAlchemy ORM."""
 from sqlalchemy import Column, Integer
-from models.base import Base
+from Models.base import Base
 
 
 class StoreProduct(Base):

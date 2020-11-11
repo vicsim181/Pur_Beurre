@@ -1,4 +1,5 @@
-"""File holding the Controler Class, managing the actions coming from the client."""
+"""File holding the Controler Class,\
+   managing the actions coming from the client."""
 from views import View
 from model import Model
 
@@ -11,73 +12,41 @@ class Controler():
 
     def display_main_menu(self):
         """Function displaying the Main Menu in the console line."""
-        loop = True
-        while loop:
-            print("\n")
-            self.view.display_main_menu()
-            action = input("What's your choice?: ").lower()
-            print("\n"
-                  "\n"
-                  "\n"
-                  "\n")
-            if action == "q":
-                exit()
-            elif action == "1":
-                categories = self.model.get_categories()
-                self.display_categories(categories)
-            elif action == "2":
-                self.view.display_favorites()
-            else:
-                self.view.display_wrong_decision()
+        self.view.main_menu(lambda: print("Leaving\n\n\n"),
+                            self.display_categories,
+                            self.display_favorites,
+                            "Select an action to perform: ", 2)
 
-    def display_categories(self, cats):
+    def display_categories(self):
         """Function displaying the categories selection menu."""
-        loop = True
-        while loop:
-            print("\n")
-            self.view.display_categories_menu(cats)
-            action = input("What's your choice?: ").lower()
-            print("\n"
-                  "\n"
-                  "\n"
-                  "\n")
-            if action == "q":
-                exit()
-            elif action == "m":
-                self.display_main_menu()
-            elif action in ('1', '2', '3', '4', '5'):
-                id_prod = 1
-                self.display_products(action, id_prod)
-            else:
-                self.view.display_wrong_decision()
+        categories = self.model.get_categories()
+        self.view.categories_menu(categories,
+                                  lambda: print("Leaving\n\n\n"),
+                                  self.display_products,
+                                  self.display_main_menu,
+                                  "Please select a Category \
+by entering its number: ")
 
-    def display_products(self, category, id_product):
+    def display_products(self, category_id, i):
         """Function displaying the products from the selected category."""
-        loop = True
-        while loop:
-            product = self.model.get_products(category, id_product)
-            print("\n")
-            self.view.display_products_list(product)
-            action = input("What's your choice?: ").lower()
-            print("\n"
-                  "\n"
-                  "\n"
-                  "\n")
-            if action == "q":
-                exit()
-            elif action == "m":
-                self.display_main_menu()
-            elif action == '1':
-                self.save_in_favorites()
-            elif action == '2':
-                self.display_products(category, id_product + 1)
-            elif action == '0':
-                if id_product == 1:
-                    self.view.display_wrong_decision()
-                else:
-                    self.display_products(category, id_product + 1)
-            else:
-                self.view.display_wrong_decision()
+        product, category_name, stores = self.model.get_products(category_id,
+                                                                 i)
+        self.view.products_list(category_name.title(), category_id,
+                                product, i, str(stores),
+                                lambda: print("Leaving\n\n\n"),
+                                self.save_product,
+                                self.display_products,
+                                self.display_main_menu,
+                                "Please select an action: ")
+
+    def save_product(self, product):
+        self.model.save_product(product)
+        # Renvoyer les 5 meilleures propositions de la catégorie.
+        #view replacement_suggestion
+
+    def display_favorites(self):
+        favorites = self.model.get_favorites()
+        self.view.favorites(favorites)
 
 
 controler = Controler()

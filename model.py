@@ -1,7 +1,8 @@
-"""File holding the model Class providing the controler with the data as requested by the user."""
+"""File holding the model Class providing the controler\
+   with the data as requested by the user."""
 import sys
-import random
-from sqlalchemy import and_, func
+from datetime import datetime
+# from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
 sys.path.append("D:/Github/P5/github")
 from Models.product import Product
@@ -76,7 +77,8 @@ class Model():
 
     def replace(self, product_replaced, id_replacing):
         favorite = Favorite(Id_product_replaced=product_replaced.Id,
-                            Id_product_replacing=id_replacing)
+                            Id_product_replacing=id_replacing,
+                            date_creation=datetime.now())
         self.ses.add(favorite)
         self.ses.commit()
 
@@ -88,6 +90,15 @@ class Model():
                        Product.Id == line.Id_product_replaced).first()
             replacing = self.ses.query(Product.name).filter(
                         Product.Id == line.Id_product_replacing).first()
-            list_favorites.append(str(replaced))
-            list_favorites.append(str(replacing))
+            replaced = str(replaced).replace('(', '').replace(')', '').replace(
+                           ',', '').replace("'", "").replace('"','')
+            replacing = str(replacing).replace('(', '').replace(')',
+                            '').replace(',', '').replace("'", "").replace(
+                            '"', '')
+            date = str(line.date_creation)
+            list_favorites.append([replaced, replacing, date])
         return list_favorites
+
+    def delete_favorites(self):
+        self.ses.query(Favorite).delete()
+        self.ses.commit()

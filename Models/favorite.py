@@ -1,5 +1,5 @@
 """Script creating the tables, using the SQLAlchemy ORM."""
-from sqlalchemy import Column, Integer, ForeignKey
+from sqlalchemy import Column, Integer, ForeignKey, DateTime
 from Models.base import Base
 
 
@@ -11,3 +11,4 @@ class Favorite(Base):
                                  nullable=False)
     Id_product_replacing = Column(Integer, ForeignKey("Product.Id"),
                                   nullable=False)
+    date_creation = Column(DateTime, nullable=False)

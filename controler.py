@@ -41,10 +41,13 @@ by entering its number: ")
                                 "Please select an action: ")
 
     def save_product(self, product):
+        """Function saving the product for a later use."""
         self.replaced_product = product
         self.replacement_suggestion(product.Id, product.id_category)
 
     def replacement_suggestion(self, product_id, id_category):
+        """Function displaying the selection of suggestions to replace\
+           the product previously selected."""
         suggestion, stores = self.model.generate_suggestions(product_id,
                                                              id_category)
         self.view.suggestions(suggestion, stores, 0,
@@ -54,20 +57,25 @@ by entering its number: ")
                               "Please select an action: ")
 
     def display_replacement(self, suggestion):
+        """Function displaying the confirmation of replacement."""
         self.model.replace(self.replaced_product, suggestion.Id)
         self.view.replacement(leaving, self.display_main_menu,
                               "Please select an action: ")
 
     def display_favorites(self):
+        """Function displaying the favorites menu."""
         favorites = self.model.get_favorites()
-        print(favorites)
-        # self.view.favorites(favorites, leaving,
-        #                     self.display_delete_favorites,
-        #                     self.display_main_menu,
-        #                     'Please select an action: ')
+        self.view.favorites(favorites, leaving,
+                            self.display_delete_favorites,
+                            self.display_main_menu,
+                            "Please select an action: ")
 
     def display_delete_favorites(self):
-        pass
+        """Function displaying the confirmation of delete."""
+        self.model.delete_favorites()
+        self.view.delete_favorites(leaving,
+                                   self.display_main_menu,
+                                   "Please select an action: ")
 
 
 controler = Controler()

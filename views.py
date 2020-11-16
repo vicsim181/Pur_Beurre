@@ -1,4 +1,5 @@
-"""Script holding the view class,managing the different views of the application."""
+"""Script holding the view class,\
+   managing the different views of the application."""
 from utils import int_input
 
 
@@ -161,8 +162,7 @@ class View():
               "###########           Consult your favorite           ###########\n"
               "#                                                               #\n")
         for index, element in enumerate(favorites):
-            print(f""" {index + 1}- "{element[index][0]}" replaced by \
-                     "{element[index][1]}" \n""")
+            print(f""" {index + 1}- | {element[0]} | replaced by | {element[1]} | on | {element[2]} |\n""")
         print("#_______________________________________________________________#\n"
               "#          !!! Press 1 to delete all the favorites !!!          #\n"
               "#                Press 2 to go back to Main Menu                #\n"
@@ -175,22 +175,20 @@ class View():
         else:
             callback_2()
 
-    def input_user(self, alt_callback, callback, message, nb_choices):
-        choice = int_input(0, nb_choices, message)
+    def delete_favorites(self, alt_callback, callback, message):
+        """Function displaying the confirmation message\
+           that the product is replaced."""
+        print("\n\n\n\n\n\n\n\n\n"
+              "#################################################################\n"
+              "#####################       Favorites       #####################\n"
+              "#                                                               #\n"
+              "#                   Your favorites are deleted!                 #\n"
+              "#                                                               #\n"
+              "#_______________________________________________________________#\n"
+              "#                 Press 1 to go back to Main Menu               #\n"
+              "#                       Press 0 to close                        #\n")
+        choice = int_input(0, 1, message)
         if choice == 0:
             alt_callback()
         else:
-            callback(choice)
-
-    def foo_1(self):
-        print("Leaving ")
-
-    def foo_2(self, choice):
-        print('Your choice is :', choice)
-
-
-def foo_3(choice, x):
-    print('Your choice is :', choice, ' ', x)
-
-# view = View()
-# view.input_user(view.foo_1, lambda choice: foo_3(choice, 'canard'), 'Veuillez choisir un produit: ', 5)
+            callback()

@@ -58,9 +58,13 @@ by entering its number: ")
 
     def display_replacement(self, suggestion):
         """Function displaying the confirmation of replacement."""
-        self.model.replace(self.replaced_product, suggestion.Id)
-        self.view.replacement(leaving, self.display_main_menu,
-                              "Please select an action: ")
+        test = self.model.replace(self.replaced_product, suggestion.Id)
+        if test == 'ok':
+            self.view.replacement(leaving, self.display_main_menu,
+                                  "Please select an action: ")
+        elif test == 'nok':
+            self.view.favorite_error(leaving, self.display_main_menu,
+                                     "Please select an action: ")
 
     def display_favorites(self):
         """Function displaying the favorites menu."""
@@ -70,9 +74,12 @@ by entering its number: ")
                             self.display_main_menu,
                             "Please select an action: ")
 
-    def display_delete_favorites(self):
+    def display_delete_favorites(self, choice):
         """Function displaying the confirmation of delete."""
-        self.model.delete_favorites()
+        if choice == 'all':
+            self.model.delete_all_favorites()
+        else:
+            self.model.delete_favorites(choice)
         self.view.delete_favorites(leaving,
                                    self.display_main_menu,
                                    "Please select an action: ")

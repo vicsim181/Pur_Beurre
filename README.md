@@ -85,9 +85,12 @@ You can delete all the table or a specific line by pressing the adequate command
 
 ## Technical details
 
-The tables have been implemented with foreign keys and relationships. 
-Deleting data from a table might affect other tables as well.
-For example, the Store and the StoreProduct tables are linked, if a store was to be removed from the Store table, it wouldn't be possible to find the products it sells anymore. Therefore, the StoreProduct table would also see the lines with the store being removed.
+The tables have been implemented with foreign keys and relationships. Deleting data from a table might affect other tables as well.
 
+For example, the Store and the StoreProduct tables are linked, if a store was to be removed from the Store table, it wouldn't be possible to find the products it sells anymore. 
+
+Therefore, the StoreProduct table would also see the lines with the store being removed. The same with a deleted product also works.
+
+Finally the Favorite table is linked the same way, if a product was to be deleted from the Product table, the lines in the Favorite table including this product will be deleted as well.
 
 

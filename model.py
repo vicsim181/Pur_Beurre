@@ -4,6 +4,7 @@ import sys
 from datetime import datetime
 # from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import IntegrityError
 sys.path.append("D:/Github/P5/github")
 from Models.product import Product
 from Models.category import Category
@@ -34,6 +35,11 @@ class Model():
         str_stores = str_stores.replace('(', '').replace(')', '').replace("'",
                                                                           "")
         return str_stores
+
+    def format_favorites(self):
+        nb = self.ses.query(Favorite).order_by(Favorite.date_creation)
+        for i, favorite in enumerate(nb):
+            favorite.Id = i + 1
 
     def get_products(self, num_category, i):
         products = self.ses.query(Product).filter(
@@ -76,14 +82,21 @@ class Model():
         return suggestions[-5:], str_stores
 
     def replace(self, product_replaced, id_replacing):
-        favorite = Favorite(Id_product_replaced=product_replaced.Id,
+        nb = len(self.ses.query(Favorite).all())
+        favorite = Favorite(Id=nb + 1,
+                            Id_product_replaced=product_replaced.Id,
                             Id_product_replacing=id_replacing,
                             date_creation=datetime.now())
-        self.ses.add(favorite)
-        self.ses.commit()
+        try:
+            self.ses.add(favorite)
+            self.ses.commit()
+            return 'ok'
+        except IntegrityError:
+            self.ses.rollback()
+            return 'nok'
 
     def get_favorites(self):
-        favorites = self.ses.query(Favorite)
+        favorites = self.ses.query(Favorite).order_by(Favorite.date_creation)
         list_favorites = []
         for line in favorites:
             replaced = self.ses.query(Product.name).filter(
@@ -91,14 +104,19 @@ class Model():
             replacing = self.ses.query(Product.name).filter(
                         Product.Id == line.Id_product_replacing).first()
             replaced = str(replaced).replace('(', '').replace(')', '').replace(
-                           ',', '').replace("'", "").replace('"','')
-            replacing = str(replacing).replace('(', '').replace(')',
-                            '').replace(',', '').replace("'", "").replace(
+                           ',', '').replace("'", "").replace('"', '')
+            replacing = str(replacing).replace('(', '').replace(
+                            ')', '').replace(',', '').replace("'", "").replace(
                             '"', '')
             date = str(line.date_creation)
             list_favorites.append([replaced, replacing, date])
         return list_favorites
 
-    def delete_favorites(self):
+    def delete_all_favorites(self):
         self.ses.query(Favorite).delete()
+        self.ses.commit()
+
+    def delete_favorites(self, choice):
+        self.ses.query(Favorite).filter(Favorite.Id == choice).delete()
+        self.format_favorites()
         self.ses.commit()

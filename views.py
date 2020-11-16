@@ -45,7 +45,7 @@ class View():
               "#                 Press the number of your choice               #\n"
               f"#                Press {i + 2} to go back to Main Menu                #\n"
               "#                       Press 0 to close                        #\n")
-        choice = int_input(0, (i + 1), message)
+        choice = int_input(0, (i + 2), message)
         if choice == 0:
             alt_callback()
         elif choice in range(1, i+2):
@@ -156,24 +156,57 @@ class View():
 
     def favorites(self, favorites, alt_callback, callback, callback_2, message):
         """Function displaying the favorite of the user."""
-        print("\n\n\n\n\n\n\n\n\n"
-              "#################################################################\n"
-              "#####################       FAVORITES       #####################\n"
-              "###########           Consult your favorite           ###########\n"
-              "#                                                               #\n")
-        for index, element in enumerate(favorites):
-            print(f""" {index + 1}- | {element[0]} | replaced by | {element[1]} | on | {element[2]} |\n""")
-        print("#_______________________________________________________________#\n"
-              "#          !!! Press 1 to delete all the favorites !!!          #\n"
-              "#                Press 2 to go back to Main Menu                #\n"
-              "#                       Press 0 to close                        #\n")
-        choice = int_input(0, 2, message)
+        try:
+            print("\n\n\n\n\n\n\n\n\n"
+                  "#################################################################\n"
+                  "#####################       FAVORITES       #####################\n"
+                  "###########          Consult your favorite(s)         ###########\n"
+                  "#                                                               #\n")
+            for i, element in enumerate(favorites):
+                print(f""" {i + 1}- | {element[0]} | replaced by | {element[1]} | on | {element[2]} |\n""")
+            print("#_______________________________________________________________#\n"
+                  f"#           !!! Press {i + 3} to delete all the favorites !!!         #\n"
+                  "#         To delete a particular line, press its number         #\n"
+                  f"#                Press {i + 2} to go back to Main Menu                #\n"
+                  "#                       Press 0 to close                        #\n")
+            choice = int_input(0, i + 3, message)
+            if choice == 0:
+                alt_callback()
+            elif choice in range(1, i + 2):
+                callback(choice)
+            elif choice == (i + 3):
+                callback('all')
+            else:
+                callback_2()
+        except UnboundLocalError:
+            print("#                                                               #\n"
+                  "#                   No favorite for the moment                  #\n"
+                  "#_______________________________________________________________#\n"
+                  "#                Press 1 to go back to Main Menu                #\n"
+                  "#                       Press 0 to close                        #\n")
+            choice = int_input(0, 1, message)
         if choice == 0:
             alt_callback()
-        elif choice == 1:
-            callback()
         else:
             callback_2()
+
+    def favorite_error(self, alt_callback, callback, message):
+        """Function warning the user that the attempted replacement has already\
+           been done before."""
+        print("\n\n\n\n\n\n\n\n\n"
+              "#################################################################\n"
+              "#####################       Favorites       #####################\n"
+              "#                                                               #\n"
+              "#              !!!THIS REPLACEMENT HAS ALREADY BEEN             #\n"
+              "#                   ADDED TO YOUR FAVORITES!!!                  #\n"
+              "#_______________________________________________________________#\n"
+              "#                 Press 1 to go back to Main Menu               #\n"
+              "#                       Press 0 to close                        #\n")
+        choice = int_input(0, 1, message)
+        if choice == 0:
+            alt_callback()
+        else:
+            callback()
 
     def delete_favorites(self, alt_callback, callback, message):
         """Function displaying the confirmation message\

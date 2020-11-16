@@ -6,5 +6,5 @@ from Models.base import Base
 class Category(Base):
     __tablename__ = "Category"
 
-    Id = Column(Integer, primary_key=True, nullable=False)
+    Id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(50), nullable=False)

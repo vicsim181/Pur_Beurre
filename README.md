@@ -4,12 +4,14 @@
 
 Each user can consult the products from 5 different categories:
 -
- * saucisson sec (Dry sausages)
+ * Apéritif (Apetizer)
+ * Biscuit chocolat (Chocolate biscuits)
  * jus d'orange (Orange juice)
  * yaourt aux fruits (Fruits yogurt)
- * glace vanille (Vanilla ice cream)
+ * glace chocolat (Chocolate ice cream)
 
 Those products are based on what is available in the french market and stores, the data about thoses products are extracted from the OpenFoodFacts database. 
+
 
 ## How to install the application?
 
@@ -52,4 +54,40 @@ Your database should now host 5 tables:
 * store
 * store_product
 
+
 ## How to use the application?
+
+Once the application is ready to use, launch it with the following file:
+```python
+> py main.py
+```
+
+The main menu of the application will then be visible.
+
+mettre image menu principal
+
+Two options are implemented, the first one allows you to choose a category in order to consult the available products:
+
+mettre image menu catégories
+
+When you found one you would like to replace by another, just select it by pressing 1:
+
+mettre image d'un produit
+
+The application will propose you the 5 best products of the same category (apart from the previous selected one). 
+If a product matches your wish cou can choose it by pressing 1 again. It will be saved into the favorites table, which you can consult at any moment from the main menu.
+In order to do so, just press 2 when on the main menu:
+
+mettre image menu principal
+
+The favorites view shows you what products have been replaced by others and at what date and time.
+You can delete all the table or a specific line by pressing the adequate command.
+
+## Technical details
+
+The tables have been implemented with foreign keys and relationships. 
+Deleting data from a table might affect other tables as well.
+For example, the Store and the StoreProduct tables are linked, if a store was to be removed from the Store table, it wouldn't be possible to find the products it sells anymore. Therefore, the StoreProduct table would also see the lines with the store being removed.
+
+
+

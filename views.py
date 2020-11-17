@@ -62,7 +62,7 @@ class View():
               "#####################  REPLACING A PRODUCT  #####################\n"
               f"                            {category_name}\n"
               "###########             Select a product              ###########\n"
-              f"#                          Product n°{i + 1} / {max_cat}                      #\n")
+              f"#                         Product n°{i + 1} / {max_cat}                      #\n")
         print(f" -Name: {product.name}\n"
               f" -Quantity: {product.quantity}\n"
               f" -Nutriscore: {product.nutri_score}\n"
@@ -103,7 +103,7 @@ class View():
               "#################################################################\n"
               "#####################  REPLACING A PRODUCT  #####################\n"
               "###########       Select the alternative product     ############\n"
-              f"#                          Product n°{i + 1}                          #\n")
+              f"#                        Product n°{i + 1} / 5                        #\n")
         print(f" -Name: {suggestion[i].name}\n"
               f" -Quantity: {suggestion[i].quantity}\n"
               f" -Nutriscore: {suggestion[i].nutri_score}\n"

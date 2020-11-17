@@ -68,20 +68,32 @@ The main menu of the application will then be visible.
 
 Two options are implemented, the first one allows you to choose a category in order to consult the available products:
 
-mettre image menu catégories
+![Categories](/Pictures/categories.jpg)
 
-When you found one you would like to replace by another, just select it by pressing 1:
+You can then iterate through the products of the chosen category:
 
-mettre image d'un produit
+![Products](/Pictures/products1.jpg)
+
+![Products](/Pictures/products2.jpg)
+
+![Products](/Pictures/products3.jpg)
+
+![Products](/Pictures/products4.jpg)
+
+When you found one you would like to replace by another, just select it by pressing 1.
+
+![Alternative](/Pictures/alternative.jpg)
 
 The application will propose you the 5 best products of the same category (apart from the previous selected one). 
 If a product matches your wish cou can choose it by pressing 1 again. It will be saved into the favorites table, which you can consult at any moment from the main menu.
 In order to do so, just press 2 when on the main menu:
 
-mettre image menu principal
+![Favorites](/Pictures/favorites.jpg)
 
 The favorites view shows you what products have been replaced by others and at what date and time.
 You can delete all the table or a specific line by pressing the adequate command.
+
+![Deletion](/Pictures/deletion.jpg)
 
 ## Technical details
 

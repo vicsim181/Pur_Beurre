@@ -1,8 +1,8 @@
 """File holding the Controler Class,\
    managing the actions coming from the client."""
-from views import View
-from model import Model
-from utils import leaving
+from Mvc.views import View
+from Mvc.model import Model
+from Mvc.utils import leaving
 
 
 class Controler():

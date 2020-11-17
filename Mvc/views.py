@@ -1,6 +1,6 @@
 """Script holding the view class,\
    managing the different views of the application."""
-from utils import int_input
+from Mvc.utils import int_input
 
 
 class View():

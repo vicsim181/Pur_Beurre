@@ -1,4 +1,4 @@
-from controler import Controler
+from Mvc.controler import Controler
 
 
 def main():

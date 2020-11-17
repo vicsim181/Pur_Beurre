@@ -30,15 +30,15 @@ by entering its number: ")
 
     def display_products(self, category_id, i):
         """Function displaying the products from the selected category."""
-        product, category_name, stores = self.model.get_products(category_id,
-                                                                 i)
+        product, category_name, stores, max_cat = self.model.get_products(
+                                                  category_id, i)
         self.view.products_list(category_name.title(), category_id,
                                 product, i, str(stores),
                                 leaving,
                                 self.save_product,
                                 self.display_products,
                                 self.display_main_menu,
-                                "Please select an action: ")
+                                "Please select an action: ", max_cat)
 
     def save_product(self, product):
         """Function saving the product for a later use."""
@@ -83,7 +83,3 @@ by entering its number: ")
         self.view.delete_favorites(leaving,
                                    self.display_main_menu,
                                    "Please select an action: ")
-
-
-controler = Controler()
-controler.display_main_menu()

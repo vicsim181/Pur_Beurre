@@ -21,10 +21,12 @@ class Model():
         self.ses = Session()
 
     def get_categories(self):
+        """Function gathering the categories from the database."""
         self.categories = self.ses.query(Category)
         return self.categories
 
     def format_stores(self, stores_id):
+        """Function formatting the stores names as Strings."""
         str_stores = ''
         for element in stores_id:
             stores_name = self.ses.query(Store.name).filter(
@@ -37,11 +39,13 @@ class Model():
         return str_stores
 
     def format_favorites(self):
+        """Function ordering the favorites and their Id in the table."""
         nb = self.ses.query(Favorite).order_by(Favorite.date_creation)
         for i, favorite in enumerate(nb):
             favorite.Id = i + 1
 
     def get_products(self, num_category, i):
+        """Function collecting the products in the chosen category."""
         products = self.ses.query(Product).filter(
                    Product.id_category == num_category)
         category = self.ses.query(Category).filter(
@@ -49,9 +53,12 @@ class Model():
         stores_id = self.ses.query(StoreProduct.id_store).filter(
                     StoreProduct.id_product == products[i].Id)
         str_stores = self.format_stores(stores_id)
-        return products[i], category.name, str_stores
+        max_cat = len(self.ses.query(Product).filter(
+                   Product.id_category == num_category).all())
+        return products[i], category.name, str_stores, max_cat
 
     def looking_for_suggestion(self, id_prod, id_cat, grade):
+        """Function looking for the suggestions in the chosen category."""
         results = self.ses.query(Product).filter(
                    Product.id_category == id_cat,
                    Product.nutri_score == grade)
@@ -63,6 +70,7 @@ class Model():
         return nb
 
     def generate_suggestions(self, id_prod, id_cat):
+        """Function formating and generating the chosen suggestions."""
         nutri = ['a', 'b', 'c', 'd', 'e']
         suggestions = []
         i = 0
@@ -82,6 +90,7 @@ class Model():
         return suggestions[-5:], str_stores
 
     def replace(self, product_replaced, id_replacing):
+        """Function saving a product replacement in the favorite table."""
         nb = len(self.ses.query(Favorite).all())
         favorite = Favorite(Id=nb + 1,
                             Id_product_replaced=product_replaced.Id,
@@ -91,11 +100,12 @@ class Model():
             self.ses.add(favorite)
             self.ses.commit()
             return 'ok'
-        except IntegrityError:
+        except IntegrityError:  # Here to manage the error when intenting to save a replacement already saved in the table.
             self.ses.rollback()
             return 'nok'
 
     def get_favorites(self):
+        """Function collecting the favorites in the favorite table."""
         favorites = self.ses.query(Favorite).order_by(Favorite.date_creation)
         list_favorites = []
         for line in favorites:
@@ -113,10 +123,12 @@ class Model():
         return list_favorites
 
     def delete_all_favorites(self):
+        """Function deleting all the rows of the favorite table."""
         self.ses.query(Favorite).delete()
         self.ses.commit()
 
     def delete_favorites(self, choice):
+        """Function deleting the selected row of the favorite table."""
         self.ses.query(Favorite).filter(Favorite.Id == choice).delete()
         self.format_favorites()
         self.ses.commit()

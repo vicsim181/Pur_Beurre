@@ -54,14 +54,15 @@ class View():
             callback_2()
 
     def products_list(self, category_name, category_id, product, i, stores,
-                      alt_callback, callback, callback_2, callback_3, message):
+                      alt_callback, callback, callback_2, callback_3, message,
+                      max_cat):
         """Function displaying the products of the selected category."""
         print("\n\n\n\n\n\n\n\n\n"
               "#################################################################\n"
               "#####################  REPLACING A PRODUCT  #####################\n"
               f"                            {category_name}\n"
               "###########             Select a product              ###########\n"
-              f"#                          Product n°{i + 1}                          #\n")
+              f"#                          Product n°{i + 1} / {max_cat}                      #\n")
         print(f" -Name: {product.name}\n"
               f" -Quantity: {product.quantity}\n"
               f" -Nutriscore: {product.nutri_score}\n"
@@ -80,7 +81,7 @@ class View():
         elif choice == 1:
             callback(product)
         elif choice == 2:
-            if i == 79:
+            if i+1 == max_cat:
                 callback_2(category_id,
                            i)
             callback_2(category_id,

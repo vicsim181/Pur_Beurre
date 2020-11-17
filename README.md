@@ -59,12 +59,12 @@ Your database should now host 5 tables:
 
 Once the application is ready to use, launch it with the following file:
 ```python
-> py main.py
+> py purbeurre.py
 ```
 
 The main menu of the application will then be visible.
 
-mettre image menu principal
+![Main Menu](/Pictures/mainmenu.jpg)
 
 Two options are implemented, the first one allows you to choose a category in order to consult the available products:
 

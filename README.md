@@ -10,7 +10,8 @@ Each user can consult the products from 5 different categories:
  * yaourt aux fruits (Fruits yogurt)
  * glace chocolat (Chocolate ice cream)
 
-Those products are based on what is available in the french market and stores, the data about thoses products are extracted from the OpenFoodFacts database. 
+Those products are based on what is available in the french market and stores, the data about thoses products are extracted from the OpenFoodFacts database.
+The categories can be found in the settings.json file located in the Scripts folder. The names and the total of category can be modified in this settings.json file. 
 
 
 ## How to install the application?

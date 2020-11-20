@@ -11,7 +11,7 @@ def main():
     Session = sessionmaker(bind=eng)
     ses = Session()
 
-    with open('../models/settings.json', 'r') as settings:
+    with open('../Scripts/settings.json', 'r') as settings:
         data = json.load(settings)
 
     for category in data['categories']:

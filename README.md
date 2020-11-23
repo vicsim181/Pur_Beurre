@@ -10,7 +10,8 @@ Each user can consult the products from 5 different categories:
  * yaourt aux fruits (Fruits yogurt)
  * glace chocolat (Chocolate ice cream)
 
-Those products are based on what is available in the french market and stores, the data about thoses products are extracted from the OpenFoodFacts database. 
+Those products are based on what is available in the french market and stores, the data about thoses products are extracted from the OpenFoodFacts database.
+The categories can be found in the settings.json file located in the Scripts folder. The names and the total of category can be modified in this settings.json file. 
 
 
 ## How to install the application?
@@ -37,14 +38,14 @@ password = os.environ['MySQL_password']
 
 eng = create_engine(f'mysql://root:{password}@localhost/database?charset=utf8mb4')
 ``` 
-The password has been as an Environment variable. It is recommended to do so in order to keep the password secret, you can set the variable's name as you wish.
+The password has been set as an Environment variable. It is recommended to do so in order to keep the password secret, you can set the variable's name as you wish.
 Remember to use the correct password for the user profile you chose to use (here 'root').
 Remember also to modify the name of the database and replace it by the name of the one you created previously. 
 Once this modification is done, you can create and feed the tables as follow:
 ```bash
-> py ormcreatedb.py
-> py ormcreatecategories.py
-> py ormfeed.py
+Scripts> py ormcreatedb.py
+Scripts> py ormcreatecategories.py
+Scripts> py ormfeed.py
 ```
 
 Your database should now host 5 tables:

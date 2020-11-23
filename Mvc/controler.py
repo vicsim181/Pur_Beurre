@@ -7,11 +7,13 @@ from Mvc.utils import leaving
 class Controler():
     """Class holding the controler and its functions."""
 
+    @staticmethod
     def display_main_menu():
         """Function displaying the Main Menu in the console line."""
         Main.display_view(leaving, Controler.display_categories, Controler.display_favorites, "What's your choice? : ",
                           "MAIN MENU", "Select an action to perform")
 
+    @staticmethod
     def display_categories():
         """Function displaying the categories selection menu."""
         categories = Model.get_categories()
@@ -19,6 +21,7 @@ class Controler():
                                     "Please select a Category by entering its number: ", "REPLACING A PRODUCT",
                                     "Select a category of products")
 
+    @staticmethod
     def display_products(category_id, i):
         """Function displaying the products from the selected category."""
         product, category_name, stores, max_cat = Model.get_products(category_id, i)
@@ -27,11 +30,13 @@ class Controler():
                                  "Please select an action: ", max_cat, "REPLACING A PRODUCT",
                                  "Select the product to replace")
 
+    @staticmethod
     def save_product(product, category_id, category_name):
         """Function saving the product for a later use."""
         replaced_product = product
         Controler.replacement_suggestion(product.Id, product.id_category, replaced_product, category_name)
 
+    @staticmethod
     def replacement_suggestion(product_id, id_category, replaced_product, category_name):
         """Function displaying the selection of suggestions to replace the product previously selected."""
         suggestion, stores = Model.generate_suggestions(product_id, id_category)
@@ -40,6 +45,7 @@ class Controler():
                                     "Please select an action: ", 5, "REPLACING A PRODUCT",
                                     "Select the alternative product")
 
+    @staticmethod
     def display_replacement(suggestion, replaced_product):
         """Function displaying the confirmation of replacement."""
         test = Model.replace(replaced_product, suggestion.Id)
@@ -52,19 +58,21 @@ class Controler():
                                        "Your replacement has already been saved",
                                        "You can consult it in your favorites", "Please select an action: ")
 
+    @staticmethod
     def display_favorites():
         """Function displaying the favorites menu."""
         favorites = Model.get_favorites()
         Favorite.consult(favorites, leaving, Controler.display_delete_favorites, Controler.display_main_menu,
                          "FAVORITES", "Consult your favorite(s)", "Please select an action: ")
 
+    @staticmethod
     def display_delete_favorites(choice):
         """Function displaying the confirmation of delete."""
         if choice == 'all':
             Model.delete_all_favorites()
-            Favorite.display_delete_all("FAVORITES", "Your favorites have been deleted", "No favorite",
-                                        "Press 1 to go back to Main Menu", "Press 0 to close",
-                                        "Please select an action: ", leaving, Controler.display_main_menu)
+            Favorite.delete_all("FAVORITES", "Your favorites have been deleted", "No favorite",
+                                "Press 1 to go back to Main Menu", "Press 0 to close",
+                                "Please select an action: ", leaving, Controler.display_main_menu)
         else:
             Model.delete_favorites(choice)
         Controler.display_favorites()

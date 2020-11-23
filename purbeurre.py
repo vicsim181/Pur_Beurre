@@ -2,7 +2,6 @@ from Mvc.controler import Controler
 
 
 def main():
-    # controler = Controler()
     Controler.display_main_menu()
 
 

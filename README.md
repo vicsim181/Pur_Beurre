@@ -38,14 +38,14 @@ password = os.environ['MySQL_password']
 
 eng = create_engine(f'mysql://root:{password}@localhost/database?charset=utf8mb4')
 ``` 
-The password has been as an Environment variable. It is recommended to do so in order to keep the password secret, you can set the variable's name as you wish.
+The password has been set as an Environment variable. It is recommended to do so in order to keep the password secret, you can set the variable's name as you wish.
 Remember to use the correct password for the user profile you chose to use (here 'root').
 Remember also to modify the name of the database and replace it by the name of the one you created previously. 
 Once this modification is done, you can create and feed the tables as follow:
 ```bash
-> py ormcreatedb.py
-> py ormcreatecategories.py
-> py ormfeed.py
+Scripts> py ormcreatedb.py
+Scripts> py ormcreatecategories.py
+Scripts> py ormfeed.py
 ```
 
 Your database should now host 5 tables:

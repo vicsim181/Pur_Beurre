@@ -70,7 +70,7 @@ class Category():
         if choice == 0:
             alt_callback()
         elif choice in range(1, i+2):
-            callback(choice, 0)
+            callback(categories[choice-1])
         else:
             callback_2()
 
@@ -79,8 +79,8 @@ class Product():
     """Class holding the view of the different products menus"""
     @staticmethod
     def display_products(category_name, category_id, product, i, stores, alt_callback, callback, callback_2,
-                         callback_3, replaced_product, message, max_products, header_title, header_sub):
-        View.print_header(header_title, header_sub)
+                         callback_3, replaced_product, message, max_products, header_sub):
+        View.print_header(category_name, header_sub)
         subtitle = f"Product n°{str(i + 1)} / {str(max_products)}"
         View.print_product(subtitle, product, stores)
         View.print_bottom("Press 1 to select this product", "To display the next product press 2",
@@ -93,13 +93,13 @@ class Product():
             callback(product, category_id, category_name)
         elif choice == 2:
             if i+1 == max_products:
-                callback_2(category_id, i)
-            callback_2(category_id, i + 1)
+                callback_2(category_id, category_name, i)
+            callback_2(category_id, category_name, i + 1)
         elif choice == 3:
             if i == 0:
-                callback_2(category_id, i)
+                callback_2(category_id, category_name, i)
             else:
-                callback_2(category_id, i - 1)
+                callback_2(category_id, category_name, i - 1)
         else:
             callback_3()
 

@@ -1,6 +1,6 @@
 """File deleting the tables from the database."""
 import sys
-sys.path.append('D:/Github/P5/github')
+sys.path.append('..')
 from Models.category import Category
 from Models.product import Product
 from Models.store import Store

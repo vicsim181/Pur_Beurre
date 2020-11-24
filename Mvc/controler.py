@@ -17,18 +17,22 @@ class Controler():
     def display_categories():
         """Function displaying the categories selection menu."""
         categories = Model.get_categories()
-        Category.display_categories(categories, leaving, Controler.display_products, Controler.display_main_menu,
+        Category.display_categories(categories, leaving, Controler.get_category, Controler.display_main_menu,
                                     "Please select a Category by entering its number: ", "REPLACING A PRODUCT",
                                     "Select a category of products")
 
     @staticmethod
-    def display_products(category_id, i):
+    def get_category(category_name):
+        category_id = Model.format_category(category_name)
+        Controler.display_products(category_id, category_name, 0)
+
+    @staticmethod
+    def display_products(category_id, category_name, i):
         """Function displaying the products from the selected category."""
-        product, category_name, stores, max_cat = Model.get_products(category_id, i)
+        product, stores, max_cat = Model.get_products(category_id, i)
         Product.display_products(category_name.title(), category_id, product, i, str(stores), leaving,
                                  Controler.save_product, Controler.display_products, Controler.display_main_menu, None,
-                                 "Please select an action: ", max_cat, "REPLACING A PRODUCT",
-                                 "Select the product to replace")
+                                 "Please select an action: ", max_cat, "Select the product to replace")
 
     @staticmethod
     def save_product(product, category_id, category_name):

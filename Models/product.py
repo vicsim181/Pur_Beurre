@@ -10,7 +10,7 @@ class Product(Base):
     Id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100), nullable=False)
     quantity = Column(String(40), nullable=False)
-    id_category = Column(Integer, ForeignKey("Category.Id"), nullable=False)
+    id_category = Column(Integer, ForeignKey("Category.Id", ondelete="CASCADE"), nullable=False)
     nutri_score = Column(String(1), nullable=False)
     ingredients = Column(String(10000), nullable=False)
     link_url = Column(String(250), nullable=False)

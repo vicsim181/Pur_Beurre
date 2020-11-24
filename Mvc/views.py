@@ -108,7 +108,7 @@ class Product():
                             message, max_alter, header_title, header_sub):
         View.print_header(header_title, header_sub)
         subtitle = f"Product n°{str(i + 1)} / {str(max_alter)}"
-        View.print_product(subtitle, product[i], stores)
+        View.print_product(subtitle, product[i], stores[i])
         View.print_bottom("Press 1 to select this product", "To display the next product press 2",
                           "To go back to the previous product press 3", "Press 4 to go back to Main Menu",
                           "Press 0 to close")

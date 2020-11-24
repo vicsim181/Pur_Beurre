@@ -6,7 +6,7 @@ import requests
 import sys
 from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
-sys.path.append("D:/Github/P5/github")
+sys.path.append('..')
 from Models.product import Product
 from Models.category import Category
 from Models.junction import StoreProduct
@@ -20,7 +20,7 @@ def main():
     ses = Session()
 
     """Extracting some parameters from the settings.json file."""
-    with open('../models/settings.json', 'r') as settings:
+    with open('./settings.json', 'r') as settings:
         data = json.load(settings)
 
     """Starting the extraction from the OpenFoodFacts API,\

@@ -1,7 +1,7 @@
 """Script feeding the Category table, using the SQLAlchemy ORM."""
 import json
 import sys
-sys.path.append('D:/Github/P5/github')
+sys.path.append('..')
 from Models.category import Category
 from Models.base import eng
 from sqlalchemy.orm import sessionmaker

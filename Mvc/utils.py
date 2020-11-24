@@ -1,3 +1,6 @@
+"""File hosting various functions used by other scripts to run the application."""
+
+
 def int_input(min_nb, max_nb, message):
     while True:
         raw = input(message)

@@ -5,6 +5,6 @@ import os
 
 password = os.environ['MySQL_password']
 
-eng = create_engine(f'mysql://root:{password}@localhost/essai?charset=utf8mb4')
+eng = create_engine(f'mysql://root:{password}@localhost/purbeurre?charset=utf8mb4')
 
 Base = declarative_base()

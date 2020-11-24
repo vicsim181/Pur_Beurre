@@ -44,14 +44,18 @@ class Model():
             favorite.Id = i + 1
 
     @staticmethod
+    def format_category(name_category):
+        num_category = Model.SES.query(Category.Id).filter(Category.name == name_category).first()
+        return num_category
+
+    @staticmethod
     def get_products(num_category, i):
         """Function collecting the products in the chosen category."""
         products = Model.SES.query(Product).filter(Product.id_category == num_category)
-        category = Model.SES.query(Category).filter(Category.Id == num_category).first()
         stores_id = Model.SES.query(StoreProduct.id_store).filter(StoreProduct.id_product == products[i].Id)
         str_stores = Model.format_stores(stores_id)
         max_cat = len(Model.SES.query(Product).filter(Product.id_category == num_category).all())
-        return products[i], category.name, str_stores, max_cat
+        return products[i], str_stores, max_cat
 
     @staticmethod
     def looking_for_suggestion(id_prod, id_cat, grade):

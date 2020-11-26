@@ -2,7 +2,7 @@
 from Mvc.utils import int_input
 
 
-class View():
+class View:
     """Generic mclass hosting generic functions or tools used by the other classes."""
     @staticmethod
     def print_header(name, action):
@@ -38,7 +38,7 @@ class View():
               "#_______________________________________________________________#")
 
 
-class Main():
+class Main:
     """Class holding the view of the main menu"""
     @staticmethod
     def display_view(alt_callback, callback, callback_2, message, header_title, header_sub):
@@ -54,7 +54,7 @@ class Main():
             callback_2()
 
 
-class Category():
+class Category:
     """Class holding the view of the categories menu"""
     @staticmethod
     def display_categories(categories, alt_callback, callback, callback_2, message, header_title, header_sub):
@@ -75,7 +75,7 @@ class Category():
             callback_2()
 
 
-class Product():
+class Product:
     """Class holding the view of the different products menus"""
     @staticmethod
     def display_products(category_name, category_id, product, i, stores, alt_callback, callback, callback_2,
@@ -134,7 +134,7 @@ class Product():
             callback_3()
 
 
-class Favorite():
+class Favorite:
     """Class holding the different views of the favorite"""
     @staticmethod
     def save_generic(alt_callback, callback, header_title, header_sub, middle_message_1, middle_message_2, message):

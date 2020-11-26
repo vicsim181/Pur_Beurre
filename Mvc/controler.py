@@ -4,7 +4,7 @@ from Mvc.model import Model
 from Mvc.utils import leaving
 
 
-class Controler():
+class Controler:
     """Class holding the controler and its functions."""
 
     @staticmethod

@@ -12,7 +12,7 @@ from Models.base import eng
 from Models.store import Store
 
 
-class Model():
+class Model:
     """Class holding the model and its functions."""
     Session = sessionmaker(bind=eng)
     SES = Session()

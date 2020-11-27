@@ -1,4 +1,4 @@
-"""Script creating the tables, using the SQLAlchemy ORM."""
+"""Script creating the Favorite table, using the SQLAlchemy ORM."""
 from sqlalchemy import Column, Integer, ForeignKey, DateTime
 from Models.base import Base
 

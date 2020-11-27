@@ -1,4 +1,4 @@
-"""Script creating the tables, using the SQLAlchemy ORM."""
+"""Script creating the Category table, using the SQLAlchemy ORM."""
 from sqlalchemy import Column, Integer, String
 from Models.base import Base
 

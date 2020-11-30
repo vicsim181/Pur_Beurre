@@ -23,8 +23,8 @@ def main():
     with open('./settings.json', 'r') as settings:
         data = json.load(settings)
 
-    """Starting the extraction from the OpenFoodFacts API,\
-    feeding the tables Product and Store with part of the data collected."""
+    """Starting the extraction from the OpenFoodFacts API, feeding the tables Product and Store with part of the data
+       collected."""
     i = 1
     categories = ses.query(Category)
     for category in categories:
@@ -48,13 +48,8 @@ def main():
     ses.commit()
 
     """Deleting the duplicates in the Store table."""
-    subq = (
-        ses.query(Store.name, func.min(Store.Id).label("min_id"))
-        .group_by(Store.name)
-    ) .subquery('name_min_id')
-    duplicates_store = (ses.query(Store).join(subq,
-                        and_(Store.name == subq.c.name,
-                             Store.Id != subq.c.min_id)))
+    subq = (ses.query(Store.name, func.min(Store.Id).label("min_id")).group_by(Store.name)).subquery('name_min_id')
+    duplicates_store = (ses.query(Store).join(subq, and_(Store.name == subq.c.name, Store.Id != subq.c.min_id)))
     for dup in duplicates_store:
         ses.delete(dup)
     ses.commit()
@@ -68,13 +63,11 @@ def main():
             for element in detail:
                 element = element.replace("'", "").replace('[', '').replace(']', '').strip()
                 stores = ses.query(Store).filter(Store.name == f'{element}').first()
-                junction.append([product.Id, product.name, element, stores.Id])
+                junction.append([product.Id, stores.Id])
 
-    """Inserting the data in the junction table: Store_Product,\
-    with only the Ids of the products and stores."""
+    """Inserting the data in the junction table: Store_Product, with only the Ids of the products and stores."""
     for line in junction:
-        add_to_junction = StoreProduct(id_product=f'{line[0]}',
-                                       id_store=f'{line[3]}')
+        add_to_junction = StoreProduct(id_product=f'{line[0]}', id_store=f'{line[1]}')
         ses.add(add_to_junction)
     ses.commit()
 

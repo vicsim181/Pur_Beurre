@@ -6,5 +6,5 @@
         "yaourt fruits",
         "glace chocolat"
     ],
-    "page" : 1
+    "page_size": 80
 }

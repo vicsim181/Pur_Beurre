@@ -28,7 +28,7 @@ def main():
     i = 1
     categories = ses.query(Category)
     for category in categories:
-        url = f'''https://world.openfoodfacts.org/cgi/search.pl?search_terms={category.name}&search_simple=1&action=process&json=1&page={data['page']}&page_size={data['page_size']}'''
+        url = f'''https://world.openfoodfacts.org/cgi/search.pl?search_terms={category.name}&search_simple=1&action=process&json=1&page_size={data['page_size']}'''
         js = requests.get(url).json()
         raw_products = js['products']
         for raw_product in raw_products:

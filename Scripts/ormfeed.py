@@ -1,12 +1,14 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 """Script feeding the tables, using the SQLAlchemy ORM."""
+
 import json
-import requests
 import sys
+sys.path.append('..')
+
+import requests
 from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
-sys.path.append('..')
+
 from Models.product import Product
 from Models.category import Category
 from Models.junction import StoreProduct
@@ -15,11 +17,11 @@ from Models.store import Store
 
 
 def main():
-    """Initializing the session."""
+    """Initializing the session."""  # Doit documenter la fonction dans son ensemble
     Session = sessionmaker(bind=eng)
     ses = Session()
 
-    """Extracting some parameters from the settings.json file."""
+    """Extracting some parameters from the settings.json file."""  # Doit être en commentaire
     with open('./settings.json', 'r') as settings:
         data = json.load(settings)
 

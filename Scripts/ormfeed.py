@@ -6,7 +6,7 @@ import sys
 sys.path.append('..')
 
 import requests
-from sqlalchemy import and_, func
+from sqlalchemy import and_, func, exc
 from sqlalchemy.orm import sessionmaker
 
 from Models.product import Product
@@ -34,18 +34,21 @@ def main():
         js = requests.get(url).json()
         raw_products = js['products']
         for raw_product in raw_products:
-            product = Product(name=raw_product['product_name'],
-                              quantity=raw_product['quantity'],
-                              id_category=category.Id,
-                              nutri_score=raw_product['nutriscore_grade'],
-                              ingredients=raw_product['ingredients_text_fr'],
-                              link_url=raw_product['url'],
-                              stores=str(raw_product['stores_tags']))
-            ses.add(product)
-            if raw_product['stores_tags']:
-                for store in raw_product['stores_tags']:
-                    store_add = Store(name=store)
-                    ses.add(store_add)
+            try:
+                product = Product(name=raw_product['product_name'],
+                                  quantity=raw_product['quantity'],
+                                  id_category=category.Id,
+                                  nutri_score=raw_product['nutriscore_grade'],
+                                  ingredients=str(raw_product['ingredients_text_fr']),
+                                  link_url=raw_product['url'],
+                                  stores=str(raw_product['stores_tags']))
+                ses.add(product)
+                if raw_product['stores_tags']:
+                    for store in raw_product['stores_tags']:
+                        store_add = Store(name=store)
+                        ses.add(store_add)
+            except KeyError:
+                pass
             i += 1
     ses.commit()
 
@@ -68,10 +71,14 @@ def main():
                 junction.append([product.Id, stores.Id])
 
     """Inserting the data in the junction table: Store_Product, with only the Ids of the products and stores."""
-    for line in junction:
-        add_to_junction = StoreProduct(id_product=f'{line[0]}', id_store=f'{line[1]}')
-        ses.add(add_to_junction)
-    ses.commit()
+    print(junction)
+    try:
+        for line in junction:
+            add_to_junction = StoreProduct(id_product=f'{line[0]}', id_store=f'{line[1]}')
+            ses.add(add_to_junction)
+        ses.commit()
+    except exc.IntegrityError:
+        pass
 
 
 if __name__ == "__main__":
